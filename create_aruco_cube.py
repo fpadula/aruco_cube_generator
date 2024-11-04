@@ -1,32 +1,34 @@
 import importSVG
 import numpy as np
+import os
+
+base_dir = os.path.dirname(os.path.realpath(__file__))
 
 # Parameters:
-# cube_size = 30
+# The size of the marker in mm
 marker_size = 60
+# If 4x4, set this to 4. 5x5, set it to 5, etc
 marker_dict = 4
+# How much the marker will be extruded into the cube body
 marker_height = 1
+# Markers downloaded from https://chev.me/arucogen/. Remember to set marker_size and marker_dict
+# accordingly
 file_list = [
-    "C:/Users/fpadula/Projects/Fiducials/aruco_cube_generator/aruco_svgs/4x4_1000-10.svg",
-    "C:/Users/fpadula/Projects/Fiducials/aruco_cube_generator/aruco_svgs/4x4_1000-11.svg",
-    "C:/Users/fpadula/Projects/Fiducials/aruco_cube_generator/aruco_svgs/4x4_1000-12.svg",
-    "C:/Users/fpadula/Projects/Fiducials/aruco_cube_generator/aruco_svgs/4x4_1000-13.svg",
-    "C:/Users/fpadula/Projects/Fiducials/aruco_cube_generator/aruco_svgs/4x4_1000-14.svg",
-    "C:/Users/fpadula/Projects/Fiducials/aruco_cube_generator/aruco_svgs/4x4_1000-15.svg",
+    f'{base_dir}/aruco_svgs/4x4_1000-10.svg',
+    f'{base_dir}/aruco_svgs/4x4_1000-11.svg',
+    f'{base_dir}/aruco_svgs/4x4_1000-12.svg',
+    f'{base_dir}/aruco_svgs/4x4_1000-13.svg',
+    f'{base_dir}/aruco_svgs/4x4_1000-14.svg',
+    f'{base_dir}/aruco_svgs/4x4_1000-15.svg',
 ]
-faces = ["A", "B", "C", "D", "E", "F"]
-# mounting_hole_diameter = 4
-# mounting_hole_depth = 4
+free_cad_path = 'C:/Program Files/FreeCAD 0.20/'
 ################################
-
-
-# marker_bit_size = cube_size / (marker_dict + 4)
-# marker_size = marker_bit_size * (marker_dict + 2)
+faces = ["A", "B", "C", "D", "E", "F"]
 
 marker_bit_size = marker_size / (marker_dict + 2)
 cube_size = marker_bit_size * (marker_dict + 4)
 with open(
-    "C:/Program Files/FreeCAD 0.20/data/Mod/Start/StartPage/LoadNew.py"
+    f'{free_cad_path}/data/Mod/Start/StartPage/LoadNew.py'
 ) as file:
     exec(file.read())
 
